@@ -259,7 +259,12 @@ Example (this is NOT the answer just an example of what goes in the {}):
 Note: This code should still run successfully even if the numbers were to change.
 
 ```{r}
+#Creates a new column for the median temperature for each year, and finds the years with the maximum and minimum medians of temperature in the Colorado data set
+CO_temps$median_temp <- apply(CO_temps[, 3:14], 1, median)
+year_max_temp <- max_temps$year[which.max(CO_temps$median_temp)]
+year_min_temp <- max_temps$year[which.min(CO_temps$median_temp)]
 
+print(paste0("The maximum median annual temperature of ", max(CO_temps$median_temp), " degrees occurred in ", year_max_temp, " and the minimum median annual temperature of ", year_min_temp, " degrees occurred in ", which.min(CO_temps$median_temp), "."))
 ```
 
 
