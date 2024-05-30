@@ -185,7 +185,16 @@ ie: 91 rounds to 90; 173 rounds to 200; 1450 rounds to 1000
 Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a row/col.
 
 ```{r}
+#Creates a function that rounds values according to their digits
+rounding <- function(value){
+  ifelse(nchar(value)==2, round(value, -1),
+         ifelse(nchar(value)==3, round(value, -2),
+                ifelse(nchar(value)==4, round(value, -3), value)))
+}
 
+rounded_matrix <- apply(mat_rand, MARGIN = 1:2, FUN = rounding)
+
+rounded_matrix
 ```
 
 
